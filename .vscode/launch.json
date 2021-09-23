@@ -1,0 +1,19 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "HITL demo",
+            "type": "python",
+            "request": "launch",
+            "program": "/Users/rafaelsanchez/git/docai-hitl/request_hitl.py", 
+            "console": "integratedTerminal",
+            "args": [],
+            "env": {
+                "GOOGLE_APPLICATION_CREDENTIALS": "/Users/rafaelsanchez/git/caip-pipelines-kfp-tfx/windy-site-254307-e41b7141a3d0.json" 
+            }
+        }
+    ]
+}

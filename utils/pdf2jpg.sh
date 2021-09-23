@@ -1,0 +1,1 @@
+java -jar /usr/local/lib/python3.8/site-packages/pdf2jpg/pdf2jpg.jar -i "/Users/rafaelsanchez/git/docai-pipelines-demo/presentation.pdf" -o "/Users/rafaelsanchez/git/docai-pipelines-demo/slides" -d 300 -p ALL

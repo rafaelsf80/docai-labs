@@ -1,0 +1,9 @@
+{
+  "inputConfig":{
+     "gcsSource":{
+        "uri":"gs://docai-pipelines-demo/pedido.pdf"
+     },
+     "mimeType":"application/pdf"
+  },
+  "documentType":"invoice"
+}

@@ -5,14 +5,14 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "HITL demo",
+            "name": "hitl invoice",
             "type": "python",
             "request": "launch",
-            "program": "/Users/rafaelsanchez/git/docai-hitl/request_hitl.py", 
+            "program": "/Users/rafaelsanchez/git/docai-labs-EXTERNAL/2-invoice-parser-and-hitl/request_hitl.py", 
             "console": "integratedTerminal",
             "args": [],
             "env": {
-                "GOOGLE_APPLICATION_CREDENTIALS": "/Users/rafaelsanchez/git/caip-pipelines-kfp-tfx/windy-site-254307-e41b7141a3d0.json" 
+                "GOOGLE_APPLICATION_CREDENTIALS": "/Users/rafaelsanchez/git/vertex-labs-EXTERNAL/1-pipeline-custom-xgb/generatedata/keyfile.json" 
             }
         }
     ]

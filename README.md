@@ -5,7 +5,7 @@ This repository contains sample codes for Document AI of GCP. These are mainly p
 Setup and authentication instructions of Vertex SDK are available [here](https://cloud.google.com/vertex-ai/docs/start/client-libraries). Please, complete those before trying any of the labs below.
 
 
-## Lab 1: Form parser
+## Lab 1: Form parser and Human-in-the-loop
 
 This lab contains some scripts to make predictions with the **Form parser.** It uses a public pdf sample located at `gs://cloud-samples-data/documentai/form.pdf`. 
 
@@ -22,7 +22,7 @@ This lab contains some scripts to make predictions with the [invoice parser](htt
 
 The invoice parser, as well as other specialized processors, supports **Human-in-the-loop** (HITL) for reviewing. There are **two ways to trigger** a HITL operation: REST API or Python SDK. 
 
-1. With REST API you need to invoke the `projects.locations.processors.process` [method](https://cloud.google.com/document-ai/docs/reference/rest/v1/projects.locations.processors/process). Note the document file must be inline encoded in base64:
+1. With REST API you need to invoke the `projects.locations.processors.process` [method](https://cloud.google.com/document-ai/docs/reference/rest/v1/projects.locations.processors/process). Note the document file must be inline encoded in [base64](https://en.wikipedia.org/wiki/Base64).
 
 ```bash
 curl -X POST \
@@ -38,6 +38,16 @@ client = documentai.DocumentProcessorServiceClient()
 ```
 ![HITL labeler console](2-invoice-parser-and-hitl/hitl-labeler-console.png)
 
+
+Additionally, both the invoice and expense parsers supports [Enterprise Knowledge Graph (EKG) for enrichment](https://cloud.google.com/document-ai/docs/ekg-enrichment). Normalized or enriched fields include:
+* Supplier Name (supplier_name)
+* Supplier Address (supplier_address)
+* Date
+* Number
+* Price
+* Phone Number (supplier_phone)
+
+![EKG](https://cloud.google.com/document-ai/docs/images/normalized-field-ekg-dai.png)
 
 ## Lab 3: W-8 (FACTA) and W-9 parser
 
@@ -55,6 +65,6 @@ Pending
 ## References
 
 [1] Codelab: [Use Procurement Document AI to Parse your Invoices using AI Platform Notebooks](https://codelabs.developers.google.com/codelabs/pdai-invoices-notebook)  
-[2] Repository: [Google CloudDocument AI github repository](https://github.com/GoogleCloudPlatform/documentai-notebooks) 
+[2] Repository: [Google Cloud Document AI github repository](https://github.com/GoogleCloudPlatform/documentai-notebooks) 
 
 

@@ -1,15 +1,17 @@
 # Document AI LABS
 
-This repository contains sample codes for Document AI of GCP, mainly python scripts (not .ipynb notebooks)
+This repository contains sample codes for Document AI of GCP. These are mainly python scripts to be copied and reused, rather than full .ipynb notebooks.
+
+Setup and authentication instructions of Vertex SDK are available [here](https://cloud.google.com/vertex-ai/docs/start/client-libraries). Please, complete those before trying any of the labs below.
 
 
 ## Lab 1: Form parser
 
 This lab contains some scripts to make predictions with the **Form parser.** It uses a public pdf sample located at `gs://cloud-samples-data/documentai/form.pdf`. 
 
-The form parser supports human-in-the-loop (HITL) for reviewing. It works with  "Key-level filters", but not "Document-level filter" option?.
+The form parser supports human-in-the-loop (HITL) for reviewing. The form-parser works with  **Key-level filters**, but not **Document-level filter** option?.
 
-One of the scripts returns a `pandas dataframe` with the fields detected, as well as bounding boxes, generating the following result:
+One of the scripts returns a `pandas dataframe` with the fields detected, as well as bounding boxes, generating a result like the following:
 
 ![Bounding boxes result](1-form-parser-and-hitl/result-with-bounding-boxes.png)
 
@@ -18,9 +20,9 @@ One of the scripts returns a `pandas dataframe` with the fields detected, as wel
 
 This lab contains some scripts to make predictions with the [invoice parser](https://cloud.google.com/document-ai/docs/processors-list#processor_invoice-processor). It uses a public pdf sample located at `gs://cloud-samples-data/documentai/invoice.pdf`.
 
-The invoice parser, as well as other specialized processors, supports human-in-the-loop (HITL) for reviewing. There are **two ways to trigger** a HITL operation: REST API or Python SDK. 
+The invoice parser, as well as other specialized processors, supports **Human-in-the-loop** (HITL) for reviewing. There are **two ways to trigger** a HITL operation: REST API or Python SDK. 
 
-1. With REST you need to invoke the `projects.locations.processors.process` [method](https://cloud.google.com/document-ai/docs/reference/rest/v1/projects.locations.processors/process). Note the file must be inline encoded in base64:
+1. With REST API you need to invoke the `projects.locations.processors.process` [method](https://cloud.google.com/document-ai/docs/reference/rest/v1/projects.locations.processors/process). Note the document file must be inline encoded in base64:
 
 ```bash
 curl -X POST \
@@ -30,7 +32,7 @@ curl -X POST \
     https://eu-documentai.googleapis.com/v1/projects/655797269815/locations/us/processors/bad52526b46aa2b6:process
 ```
 
-2. With python SDK you need to invoke `DocumentProcessorServiceClient()` in python:
+2. With Python SDK you need to invoke `DocumentProcessorServiceClient()` function:
 ```python
 client = documentai.DocumentProcessorServiceClient()
 ```
@@ -52,6 +54,7 @@ Pending
 
 ## References
 
-[1] Codelab: [Use Procurement Document AI to Parse your Invoices using AI Platform Notebooks](https://codelabs.developers.google.com/codelabs/pdai-invoices-notebook)
+[1] Codelab: [Use Procurement Document AI to Parse your Invoices using AI Platform Notebooks](https://codelabs.developers.google.com/codelabs/pdai-invoices-notebook)  
+[2] Repository: [Google CloudDocument AI github repository](https://github.com/GoogleCloudPlatform/documentai-notebooks) 
 
 

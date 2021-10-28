@@ -30,7 +30,6 @@ def process_document_sample():
 
     # Recognizes text entities in the PDF document
     result = client.process_document(request=request)
-    print(result)
     document = result.document
     entities = document.entities
     print("Document processing complete.\n\n")
@@ -40,9 +39,14 @@ def process_document_sample():
     values = []
     confidence = []
     
-    # Grab each key/value pair and their corresponding confidence scores.
+    # Grab each key/value pair and their corresponding confidence scores. Includes nested fields
     for entity in entities:
         types.append(entity.type_)
+        if (entity.id):
+            for property in entity.properties:
+                types.append(property.type_)
+                values.append(property.mention_text)
+                confidence.append(round(property.confidence, 4))
         values.append(entity.mention_text)
         confidence.append(round(entity.confidence,4))
         
@@ -94,7 +98,7 @@ for entity in doc.entities:
         vertices[1]['x'], vertices[1]['y'],
         vertices[2]['x'], vertices[2]['y'],
         vertices[3]['x'], vertices[3]['y']], outline='blue')
-document_image.show()
+#document_image.show()
 
 
 # def parse_form(project_id=PROJECT_ID,

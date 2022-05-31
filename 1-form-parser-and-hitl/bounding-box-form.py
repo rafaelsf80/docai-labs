@@ -1,7 +1,6 @@
 from google.cloud import documentai_v1beta3 as documentai
 from PIL import Image, ImageDraw
 
-import os
 import pandas as pd
 
 PROJECT_ID = "windy-site-254307"

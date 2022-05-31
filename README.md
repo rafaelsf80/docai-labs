@@ -58,9 +58,11 @@ Pretty table result from the python script:
 ![W9 specialized parser result](3-w8-w9-parser/w9-parser-prediction.png)
 
 
-## Lab 4: AutoML and custom parsers
+## Lab 4: Tables
 
-Pending
+This lab extracts tables using the form parser. It focus only of the JSON output containing the tables information. there are two scripts:
+* `tables.py`: extract tables from a pdf file
+* `2csv.py`: extract tables from a pdf file, and convert the JSON output to CSV
 
 ## References
 

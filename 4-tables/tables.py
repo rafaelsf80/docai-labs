@@ -1,0 +1,113 @@
+from typing import Sequence
+
+from google.api_core.client_options import ClientOptions
+from google.cloud import documentai_v1 as documentai
+
+PROJECT_ID = 'argolis-rafaelsanchez-ml-dev'
+LOCATION = 'eu' # Format is 'us' or 'eu'
+PROCESSOR_ID = '8f20926906a787ec' # Create processor in Cloud Console
+FILE_PATH = './868.pdf'
+MIME_TYPE = 'application/pdf' # Refer to https://cloud.google.com/document-ai/docs/processors-list for supported file types
+
+
+def process_document_form_sample(
+    project_id: str, location: str, processor_id: str, file_path: str, mime_type: str
+):
+    # Online processing request to Document AI
+    document = process_document(
+        project_id, location, processor_id, file_path, mime_type
+    )
+
+    # Read the table and form fields output from the processor
+    # The form processor also contains OCR data. For more information
+    # on how to parse OCR data please see the OCR sample.
+
+    # For a full list of Document object attributes, please reference this page:
+    # https://cloud.google.com/python/docs/reference/documentai/latest/google.cloud.documentai_v1.types.Document
+
+    text = document.text
+    print(f"Full document text: {repr(text)}\n")
+    print(f"There are {len(document.pages)} page(s) in this document.")
+
+    # Read the form fields and tables output from the processor
+    for page in document.pages:
+        print(f"\n\n**** Page {page.page_number} ****")
+
+        print(f"\nFound {len(page.tables)} table(s):")
+        for table in page.tables:
+            num_collumns = len(table.header_rows[0].cells)
+            num_rows = len(table.body_rows)
+            print(f"Table with {num_collumns} columns and {num_rows} rows:")
+
+            # Print header rows
+            print("Columns:")
+            print_table_rows(table.header_rows, text)
+            # Print body rows
+            print("Table body data:")
+            print_table_rows(table.body_rows, text)
+
+        print(f"\nFound {len(page.form_fields)} form field(s):")
+        for field in page.form_fields:
+            name = layout_to_text(field.field_name, text)
+            value = layout_to_text(field.field_value, text)
+            print(f"    * {repr(name.strip())}: {repr(value.strip())}")
+
+
+def process_document(
+    project_id: str, location: str, processor_id: str, file_path: str, mime_type: str
+) -> documentai.Document:
+    # You must set the api_endpoint if you use a location other than 'us', e.g.:
+    opts = ClientOptions(api_endpoint=f"{location}-documentai.googleapis.com")
+
+    client = documentai.DocumentProcessorServiceClient(client_options=opts)
+
+    # The full resource name of the processor, e.g.:
+    # projects/project_id/locations/location/processor/processor_id
+    # You must create new processors in the Cloud Console first
+    name = client.processor_path(project_id, location, processor_id)
+
+    # Read the file into memory
+    with open(file_path, "rb") as image:
+        image_content = image.read()
+
+    # Load Binary Data into Document AI RawDocument Object
+    raw_document = documentai.RawDocument(content=image_content, mime_type=mime_type)
+
+    # Configure the process request
+    request = documentai.ProcessRequest(name=name, raw_document=raw_document)
+
+    result = client.process_document(request=request)
+
+    return result.document
+
+
+def print_table_rows(
+    table_rows: Sequence[documentai.Document.Page.Table.TableRow], text: str
+) -> None:
+    for table_row in table_rows:
+        row_text = ""
+        for cell in table_row.cells:
+            cell_text = layout_to_text(cell.layout, text)
+            row_text += f"{repr(cell_text.strip())} | "
+        print(row_text)
+
+
+def layout_to_text(layout: documentai.Document.Page.Layout, text: str) -> str:
+    """
+    Document AI identifies text in different parts of the document by their
+    offsets in the entirity of the document's text. This function converts
+    offsets to a string.
+    """
+    response = ""
+    # If a text segment spans several lines, it will
+    # be stored in different text segments.
+    for segment in layout.text_anchor.text_segments:
+        start_index = int(segment.start_index)
+        end_index = int(segment.end_index)
+        response += text[start_index:end_index]
+    return response
+
+
+# [END documentai_process_form_document]
+
+process_document_form_sample(PROJECT_ID, LOCATION, PROCESSOR_ID, FILE_PATH, MIME_TYPE)

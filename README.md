@@ -60,9 +60,13 @@ Pretty table result from the python script:
 
 ## Lab 4: Tables
 
-This lab extracts tables using the form parser. It focus only of the JSON output containing the tables information. there are two scripts:
+This lab extracts tables using the form parser, documentation [here](https://cloud.google.com/document-ai/docs/handle-response#forms_and_tables). It focus only of the JSON output containing the tables information. there are two scripts:
 * `tables.py`: extract tables from a pdf file
 * `2csv.py`: extract tables from a pdf file, and convert the JSON output to CSV
+
+Another sample code to extract tables can be found [here](https://github.com/holtskinner/python-documentai/blob/main/samples/snippets/process_document_form_sample.py).
+
+And an example that uses Pandas to convert the table to CSV [here](https://github.com/GoogleCloudPlatform/document-ai-samples/tree/main/extract-tables).
 
 ## References
 

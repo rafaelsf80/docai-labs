@@ -11,7 +11,7 @@ This lab contains a script to make predictions with the **Form parser.** It uses
 
 One of the scripts returns a `pandas dataframe` with the fields detected, as well as bounding boxes, generating a result like the following:
 
-![Bounding boxes result](1-form-parser-and-hitl/result-with-bounding-boxes.png)
+![Bounding boxes result](1-form-parser/result-with-bounding-boxes.png)
 
 
 ## Lab 2: Invoice parser and Human-in-the-loop

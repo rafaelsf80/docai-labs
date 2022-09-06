@@ -5,11 +5,9 @@ This repository contains sample codes for Document AI of GCP. These are mainly p
 Setup and authentication instructions of Vertex SDK are available [here](https://cloud.google.com/vertex-ai/docs/start/client-libraries). Please, complete those before trying any of the labs below.
 
 
-## Lab 1: Form parser and Human-in-the-loop
+## Lab 1: Form parser
 
-This lab contains some scripts to make predictions with the **Form parser.** It uses a public pdf sample located at `gs://cloud-samples-data/documentai/form.pdf`. 
-
-The form parser supports human-in-the-loop (HITL) for reviewing. The form-parser works with  **Key-level filters**, but not **Document-level filter** option?.
+This lab contains a script to make predictions with the **Form parser.** It uses a public pdf sample located at `gs://cloud-samples-data/documentai/form.pdf`. 
 
 One of the scripts returns a `pandas dataframe` with the fields detected, as well as bounding boxes, generating a result like the following:
 
@@ -39,7 +37,7 @@ client = documentai.DocumentProcessorServiceClient()
 ![HITL labeler console](2-invoice-parser-and-hitl/hitl-labeler-console.png)
 
 
-Additionally, both the invoice and expense parsers supports [Enterprise Knowledge Graph (EKG) for enrichment](https://cloud.google.com/document-ai/docs/ekg-enrichment). Normalized or enriched fields include:
+Additionally, both the invoice parser supports [Enterprise Knowledge Graph (EKG) for enrichment](https://cloud.google.com/document-ai/docs/ekg-enrichment). Normalized or enriched fields include:
 * Supplier Name (supplier_name)
 * Supplier Address (supplier_address)
 * Date
@@ -68,9 +66,16 @@ Another sample code to extract tables can be found [here](https://github.com/hol
 
 And an example that uses Pandas to convert the table to CSV [here](https://github.com/GoogleCloudPlatform/document-ai-samples/tree/main/extract-tables).
 
+
 ## References
 
-[1] Codelab: [Use Procurement Document AI to Parse your Invoices using AI Platform Notebooks](https://codelabs.developers.google.com/codelabs/pdai-invoices-notebook)  
-[2] Repository: [Google Cloud Document AI github repository](https://github.com/GoogleCloudPlatform/documentai-notebooks) 
+[1] Codelab: [Use Procurement Document AI to Parse your Invoices using AI Platform Notebooks](https://codelabs.developers.google.com/codelabs/pdai-invoices-notebook)   
+[2] Codelab: [Intro to Document AI and OCR](https://codelabs.developers.google.com/codelabs/docai-ocr-python)   
+[3] Codelab: [Specialized processors with Document AI](https://codelabs.developers.google.com/codelabs/docai-specialized-processors-python)    
+[4] Codelab: [Human in the Loop](https://codelabs.developers.google.com/codelabs/docai-hitl)    
+[5] Codelab: [Form parsing](https://codelabs.developers.google.com/codelabs/docai-form-parser-v1-python)    
+[6] Repository: [Google Cloud Document AI github repository](https://github.com/GoogleCloudPlatform/documentai-notebooks)     
+
+
 
 

@@ -4,9 +4,9 @@ from PIL import Image, ImageDraw
 import os
 import pandas as pd
 
-PROJECT_ID = "windy-site-254307"
-LOCATION = "eu"  # Format is 'us' or 'eu'
-PROCESSOR_ID = "bad52526b46aa2b6"  
+PROJECT_ID = "argolis-rafaelsanchez-ml-dev"
+LOCATION = "eu" 
+PROCESSOR_ID = "8ace1dd90d9bbd09"  
 PDF_PATH = "./invoice.pdf" # Update to path of target document
 
 def process_document_sample():
@@ -98,7 +98,7 @@ for entity in doc.entities:
         vertices[1]['x'], vertices[1]['y'],
         vertices[2]['x'], vertices[2]['y'],
         vertices[3]['x'], vertices[3]['y']], outline='blue')
-#document_image.show()
+document_image.show()
 
 
 # def parse_form(project_id=PROJECT_ID,

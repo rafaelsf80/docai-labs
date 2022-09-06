@@ -4,9 +4,9 @@ from google.api_core.client_options import ClientOptions
 from google.cloud import documentai_v1 as documentai
 
 PROJECT_ID = 'argolis-rafaelsanchez-ml-dev'
-LOCATION = 'eu' # Format is 'us' or 'eu'
-PROCESSOR_ID = '8f20926906a787ec' # Create processor in Cloud Console
-FILE_PATH = './868.pdf'
+LOCATION = 'eu'
+PROCESSOR_ID = '8f20926906a787ec' 
+FILE_PATH = './alphabet_balance_sheet.pdf'
 MIME_TYPE = 'application/pdf' # Refer to https://cloud.google.com/document-ai/docs/processors-list for supported file types
 
 

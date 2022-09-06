@@ -1,7 +1,7 @@
-project_id= 'windy-site-254307'
-location = 'us' # Format is 'us' or 'eu'
-processor_id = 'd1597a4b0fde37bf' # Create processor in Cloud Console
-file_path = 'W9.pdf' # The local file in your current working directory
+PROJECT_ID = "argolis-rafaelsanchez-ml-dev"
+location = 'us' 
+processor_id = 'TO_BE_CREATED'
+file_path = 'W9.pdf' 
 
 from google.cloud import documentai_v1beta3 as documentai
 from google.cloud import storage

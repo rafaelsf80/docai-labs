@@ -4,10 +4,11 @@ from google.cloud import documentai_v1beta3 as documentai
 import base64
 
 # It's always better if you use a bad quality example in order to trigger HITL
-LOCAL_FILE = '/Users/rafaelsanchez/git/docai-labs-EXTERNAL/2-invoice-parser-and-hitl/invoice.pdf'
-PROJECT_ID = '655797269815' # windy-site-254307
+
+LOCAL_FILE = './invoice.pdf'
+PROJECT_ID = "argolis-rafaelsanchez-ml-dev"
 LOCATION = 'eu'
-PROCESSOR_ID = 'bad52526b46aa2b6'
+PROCESSOR_ID = '8ace1dd90d9bbd09'
 
 def process_document_sample(
     project_id: str, location: str, processor_id: str, file_path: str
